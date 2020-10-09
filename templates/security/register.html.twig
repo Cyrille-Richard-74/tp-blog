@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-4 offset-4">
+
+            <h2>Inscription</h2>
+
+            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+            
+            {# Firstname #}
+            <div class="form-group">
+                {{ form_label(form.firstname) }}
+                {{ form_widget(form.firstname) }}
+                {{ form_errors(form.firstname) }}
+                {{ form_help(form.firstname) }}
+            </div>
+            {# Lastname #}
+            <div class="form-group">
+                {{ form_label(form.lastname) }}
+                {{ form_widget(form.lastname) }}
+                {{ form_errors(form.lastname) }}
+                {{ form_help(form.lastname) }}
+            </div>
+            
+            {# Email #}
+            <div class="form-group">
+                {{ form_label(form.email.first) }}
+                {{ form_widget(form.email.first) }}
+                {{ form_errors(form.email.first) }}
+                {{ form_help(form.email.first) }}
+            </div>
+            {# Confirm Email #}
+            <div class="form-group">
+                {{ form_label(form.email.second) }}
+                {{ form_widget(form.email.second) }}
+                {{ form_errors(form.email.second) }}
+                {{ form_help(form.email.second) }}
+            </div>
+            
+            {# Password #}
+            <div class="form-group">
+                {{ form_label(form.password.first) }}
+                {{ form_widget(form.password.first) }}
+                {{ form_errors(form.password.first) }}
+                {{ form_help(form.password.first) }}
+            </div>
+
+            {# Confirm Password #}
+            <div class="form-group">
+                {{ form_label(form.password.second) }}
+                {{ form_widget(form.password.second) }}
+                {{ form_errors(form.password.second) }}
+                {{ form_help(form.password.second) }}
+            </div>
+            
+            {# AgreeTerms #}
+            <div class="form-group">
+                {# {{ form_label(form.agreeTerms) }} #}
+                {{ form_widget(form.agreeTerms) }}
+                <label class="ml-3 mb-0" for="{{ form.agreeTerms.vars.id }}">J'accepte les conditions d'utilisation.</label>
+                {{ form_errors(form.agreeTerms) }}
+                {# {{ form_help(form.agreeTerms) }} #}
+            </div>
+            
+            <button type="submit" class="btn btn-success">Je m'inscris</button>
+            
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+</div>
+{% endblock %}
