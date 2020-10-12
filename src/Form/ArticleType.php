@@ -20,9 +20,17 @@ class ArticleType extends AbstractType
             ->add('title', TextType::class, [
             ])
             // ->add('slug')
+
+            // Extrait
             ->add('summary', TextareaType::class, [])
+
+            // Article
             ->add('content', TextareaType::class, [])
-            ->add('illustration', FileType::class, [])
+
+            // Illustration
+            ->add('illustration', FileType::class, [
+                'required' => false
+            ])
         ;
     }
 

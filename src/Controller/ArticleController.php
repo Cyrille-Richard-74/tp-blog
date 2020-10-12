@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Service\SlugService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,8 +29,12 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/new", name="article_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, SlugService $slugService): Response
     {
+        // Controle d'accès
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
+
+
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
@@ -37,6 +42,7 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $article->setAuthor( $this->getUser() );
+            $article->setSlug( $slugService->slugify( $article->getTitle() ) );
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($article);
@@ -66,6 +72,10 @@ class ArticleController extends AbstractController
      */
     public function edit(Request $request, Article $article): Response
     {
+        // Controle d'accès
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
+
+
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
@@ -86,6 +96,10 @@ class ArticleController extends AbstractController
      */
     public function delete(Request $request, Article $article): Response
     {
+        // Controle d'accès
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_REMEMBERED');
+
+        
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($article);

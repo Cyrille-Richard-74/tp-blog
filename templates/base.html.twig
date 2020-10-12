@@ -1,3 +1,5 @@
+{% set test_1 = "Ceci est un premier test" %}
+{% set test_2 = "Ceci est un second test" %}
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,6 +8,12 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+
+        <nav>
+            <a href="{{ path('article_index') }}">Articles</a>
+            {% include "components/usernav.html.twig" with {test_abc: test_1} only %}
+        </nav>
+
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

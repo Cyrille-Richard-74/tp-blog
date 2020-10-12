@@ -47,6 +47,7 @@ class SecurityController extends AbstractController
                     );
     
                     $user->setPassword( $password );
+                    $user->setBirthday( new \DateTime );
     
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($user); 

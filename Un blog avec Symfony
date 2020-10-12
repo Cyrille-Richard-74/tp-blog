@@ -1,0 +1,26 @@
+Un blog avec Symfony
+
+
+Entité User
+- Email
+- password
+
+- Firstname
+- Lastname
+- Bio
+- Birthday
+- Articles 
+
+Entité Article
+- Titre
+- Slug (préveoir la propriété)
+- Summary (aperçu de l'article)
+- Content
+- Illustration
+- Author
+
+
+- Mise en place du projet
+- Gestion des utiliseurs (register / login)
+- Publication d'articleS sur la page d'accueil
+- CRUD articles pour les utilisateurs identifiés
